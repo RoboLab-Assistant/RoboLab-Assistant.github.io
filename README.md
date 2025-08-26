@@ -7,7 +7,7 @@
 
 4.Source the workspace
 
-5.Edit the cmake file
+5.Edit the package file
 
 6.Launch the simulation
 
