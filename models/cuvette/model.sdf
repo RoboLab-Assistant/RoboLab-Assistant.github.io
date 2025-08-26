@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="cuvette">
+    <pose>0.3 0 0 0 0 0</pose>
+    <static>false</static>
+
+    <link name="cuvette_link">
+
+      <visual name="cuvette_visual">
+        <geometry>
+          <mesh>
+            <uri>model://cuvette/meshes/cuvette.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.8 0.8 0.8 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+          <specular>0.5 0.5 0.5 1</specular>
+        </material>
+      </visual>
+
+      <collision name="cuvette_collision">
+        <geometry>
+          <mesh>
+            <uri>model://cuvette/meshes/cuvette.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.5</mu>
+              <mu2>0.5</mu2>
+            </ode>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0.05</restitution_coefficient>
+            <threshold>100000</threshold>
+          </bounce>
+          <contact>
+            <ode>
+              <kp>100000</kp>
+              <kd>1.0</kd>
+              <contact_surface_layer>0.0015</contact_surface_layer>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <inertial>
+        <mass>0.015</mass>
+        <inertia>
+          <ixx>2.73e-06</ixx>
+          <iyy>2.73e-06</iyy>
+          <izz>3.91e-07</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+
+    </link>
+  </model>
+</sdf>
