@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboLab Assistant | AI-Powered Robotic Lab Automation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #03040B;
+            color: #E2E8F0; /* slate-200 */
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                radial-gradient(ellipse 80% 80% at 50% -20%, rgba(14, 165, 233, 0.3), rgba(255, 255, 255, 0)),
+                radial-gradient(circle at 80% 80%, rgba(192, 38, 211, 0.2), rgba(255, 255, 255, 0));
+            z-index: -1;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6); /* gray-900 with opacity */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(55, 65, 81, 0.4); /* gray-700 with opacity */
+        }
+        
+        /* New professional hero title styles */
+        .hero-title {
+            color: #FFFFFF; /* Changed to solid white for visibility */
+        }
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInGrow 1s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+        }
+        .hero-title .line-2 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInGrow {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll-triggered animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.2s;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animated border for CTA */
+        .animated-border-box {
+            position: relative;
+            overflow: hidden;
+        }
+        .animated-border-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0ea5e9);
+            animation: animate1 4s linear infinite;
+        }
+        @keyframes animate1 {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* Timeline styling */
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 1rem; /* Tailwind's ml-4 */
+            top: 1.5rem; /* Center on icon */
+            bottom: -1rem;
+            width: 2px;
+            background: #374151; /* gray-700 */
+            transform: translateX(-50%);
+        }
+        .timeline-item:last-child:before {
+            display: none;
+        }
+        .timeline-icon {
+            background-color: #03040B;
+        }
+
+        /* Enhanced Application Section Styles */
+        .app-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .app-card:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) scale(1.05);
+        }
+        .app-card-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem; /* rounded-xl */
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(14, 165, 233, 0.2), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .app-card:hover .app-card-glow {
+            opacity: 1;
+        }
+        .app-card .card-content {
+            transform: translateY(25%);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .app-card:hover .card-content {
+            transform: translateY(0);
+        }
+        .app-card .description {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+        }
+        .app-card:hover .description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation --><header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold text-white tracking-wider">
+                    Robo<span class="text-sky-400">Lab</span>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-slate-300 hover:text-sky-400 transition-colors duration-300">Features</a>
+                    <a href="#technology" class="text-slate-300 hover:text-sky-400 transition-colors duration-300">Technology</a>
+                    <a href="#applications" class="text-slate-300 hover:text-sky-400 transition-colors duration-300">Applications</a>
+                    <a href="#contact" class="text-slate-300 hover:text-sky-400 transition-colors duration-300">Contact</a>
+                </nav>
+                <a href="#contact" class="hidden md:block bg-sky-500 hover:bg-sky-600 text-white font-semibold px-5 py-2 rounded-lg shadow-lg shadow-sky-500/30 transition-all duration-300 transform hover:scale-105">
+                    Request Demo
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden bg-gray-900/80 backdrop-blur-md">
+            <a href="#features" class="block text-center py-3 text-slate-300 hover:text-sky-400 hover:bg-gray-800">Features</a>
+            <a href="#technology" class="block text-center py-3 text-slate-300 hover:text-sky-400 hover:bg-gray-800">Technology</a>
+            <a href="#applications" class="block text-center py-3 text-slate-300 hover:text-sky-400 hover:bg-gray-800">Applications</a>
+            <a href="#contact" class="block text-center py-3 text-slate-300 hover:text-sky-400 hover:bg-gray-800">Contact</a>
+            <div class="p-4">
+                <a href="#contact" class="block w-full text-center bg-sky-500 hover:bg-sky-600 text-white font-semibold px-5 py-2 rounded-lg shadow-lg shadow-sky-500/30 transition-all duration-300">
+                    Request Demo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section --><section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <div class="gradient-bg"></div>
+            <div class="container mx-auto px-6 z-10">
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-sky-400 font-semibold mb-4 text-lg md:text-xl reveal">UNIVERSAL ROBOTICS UR3e PLATFORM</p>
+                    <div>
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight hero-title">
+                           <span class="line-1">Empowering Discovery</span><br>
+                           <span class="line-2">Through Robotic Precision.</span>
+                        </h1>
+                    </div>
+                    <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed reveal">
+                        RoboLab Assistant transforms your lab with state-of-the-art computer vision and motion planning, enabling fully autonomous handling of chemical samples and complex lab protocols.
+                    </p>
+                    <div class="mt-12 flex justify-center gap-4 reveal">
+                        <a href="#technology" class="bg-white text-gray-900 font-bold px-8 py-4 rounded-lg shadow-lg shadow-white/20 hover:bg-slate-200 transition-all duration-300 transform hover:scale-105">
+                            Explore Technology
+                        </a>
+                        <a href="#" class="border-2 border-slate-400 text-white font-bold px-8 py-4 rounded-lg hover:bg-white/10 hover:border-white transition-all duration-300 transform hover:scale-105">
+                            Watch Video
+                        </a>
+                    </div>
+                </div>
+            </div>
+             <!-- Robot arm visual --><div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-1/2 z-0">
+                 <img src="https://images.unsplash.com/photo-1678136332125-2856f642a8b3?q=80&w=2070&auto=format&fit=crop" alt="A sleek robotic arm in a futuristic setting" class="w-full h-full object-contain object-bottom opacity-20 " onerror="this.onerror=null;this.src='https://placehold.co/1000x500/03040B/FFFFFF?text=Image+Not+Found';">
+                 <div class="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-[#03040B] to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- Features Section --><section id="features" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white reveal">The Future of Lab Work is Here</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-400 reveal">Our system is built on a foundation of four key technological pillars.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature Card 1 --><div class="glass-card p-8 rounded-2xl border-t-2 border-sky-500 reveal transition-transform duration-300 hover:-translate-y-2">
+                        <div class="mb-4 inline-block p-3 bg-sky-500/10 rounded-lg">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">AI-Powered Vision</h3>
+                        <p class="text-slate-400">Identifies vials, labware, and instruments with superhuman accuracy, adapting to new items with minimal training.</p>
+                    </div>
+                    <!-- Feature Card 2 --><div class="glass-card p-8 rounded-2xl border-t-2 border-fuchsia-500 reveal transition-transform duration-300 hover:-translate-y-2" style="transition-delay: 0.3s;">
+                        <div class="mb-4 inline-block p-3 bg-fuchsia-500/10 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-fuchsia-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Precision Handling</h3>
+                        <p class="text-slate-400">Sub-millimeter accuracy for delicate tasks like pipetting, vial capping, and sample transfer without spills or contamination.</p>
+                    </div>
+                    <!-- Feature Card 3 --><div class="glass-card p-8 rounded-2xl border-t-2 border-emerald-500 reveal transition-transform duration-300 hover:-translate-y-2" style="transition-delay: 0.4s;">
+                        <div class="mb-4 inline-block p-3 bg-emerald-500/10 rounded-lg">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7.014A8.003 8.003 0 0112 3c1.398 0 2.743.57 3.714 1.543A8.003 8.003 0 0118 12c0 2.209-1.791 4-4 4s-4-1.791-4-4 1.791-4 4-4 4 1.791 4 4z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Dynamic Motion Planning</h3>
+                        <p class="text-slate-400">Calculates collision-free paths in real-time, safely navigating cluttered lab benches and complex equipment layouts.</p>
+                    </div>
+                    <!-- Feature Card 4 --><div class="glass-card p-8 rounded-2xl border-t-2 border-amber-500 reveal transition-transform duration-300 hover:-translate-y-2" style="transition-delay: 0.5s;">
+                        <div class="mb-4 inline-block p-3 bg-amber-500/10 rounded-lg">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Safety & Compliance</h3>
+                        <p class="text-slate-400">Integrated safety protocols and complete audit trails ensure secure operation and adherence to lab standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section --><section id="technology" class="py-20 md:py-32 bg-gray-900/40">
+            <div class="container mx-auto px-6">
+                 <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <p class="text-sky-400 font-semibold mb-2">HOW IT WORKS</p>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">A Seamless Workflow from Vision to Action</h2>
+                        <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                            Our platform integrates perception, planning, and execution into a cohesive, intelligent system that operates with unmatched efficiency. Follow the three core stages of every task.
+                        </p>
+                        <!-- Timeline --><div class="space-y-12">
+                            <!-- Step 1 --><div class="relative pl-12 timeline-item">
+                                <div class="absolute left-0 top-3 w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center ring-8 ring-sky-500/20 timeline-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">1. Scan & Identify</h3>
+                                <p class="text-slate-400 mt-1">The system's 3D cameras map the workspace. Our neural network identifies and localizes every object, from beakers to centrifuges.</p>
+                            </div>
+                             <!-- Step 2 --><div class="relative pl-12 timeline-item">
+                                <div class="absolute left-0 top-3 w-8 h-8 rounded-full bg-fuchsia-500 flex items-center justify-center ring-8 ring-fuchsia-500/20 timeline-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">2. Plan & Optimize</h3>
+                                <p class="text-slate-400 mt-1">Based on the goal, the motion planning algorithm computes the most efficient, collision-free trajectory for the arm and gripper.</p>
+                            </div>
+                             <!-- Step 3 --><div class="relative pl-12 timeline-item">
+                                <div class="absolute left-0 top-3 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center ring-8 ring-emerald-500/20 timeline-icon">
+                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-white">3. Execute & Report</h3>
+                                <p class="text-slate-400 mt-1">The UR3e arm executes the planned motion with precision. Every action is logged, and a report is generated upon task completion.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="reveal">
+                        <div class="glass-card rounded-2xl p-4">
+                            <img src="https://images.unsplash.com/photo-1694500980502-7c8c39386a59?q=80&w=1974&auto=format&fit=crop" alt="A robotic arm working in a clean, modern laboratory." class="rounded-xl" onerror="this.onerror=null;this.src='https://placehold.co/800x600/111827/FFFFFF?text=Image+Not+Found';">
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Applications Section --><section id="applications" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white reveal">Versatile Capabilities for Any Modern Lab</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-400 reveal">From simple pick-and-place to complex multi-step protocols, RoboLab excels.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- App 1: Sample Preparation --><div class="group app-card relative overflow-hidden rounded-xl reveal">
+                        <img src="https://images.unsplash.com/photo-1581092446333-5b88c4716861?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Robotic arm preparing samples in a lab environment" onerror="this.onerror=null;this.src='https://placehold.co/600x400/03040B/FFFFFF?text=Sample+Preparation';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent"></div>
+                        <div class="app-card-glow"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full card-content">
+                            <div class="flex items-center mb-2">
+                                <div class="p-2 bg-sky-500/10 rounded-md mr-3 border border-sky-500/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 00.517 3.86l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l-2.387-.477z" /></svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Sample Preparation</h3>
+                            </div>
+                            <p class="text-slate-300 mt-2 description">Automated liquid handling, dilution, and mixing for high-throughput screening.</p>
+                        </div>
+                    </div>
+                    <!-- App 2: Instrument Loading --><div class="group app-card relative overflow-hidden rounded-xl reveal" style="transition-delay: 0.3s;">
+                        <img src="https://images.unsplash.com/photo-1628121153434-a2d04a64d1f5?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Robotic arm loading a machine instrument" onerror="this.onerror=null;this.src='https://placehold.co/600x400/03040B/FFFFFF?text=Instrument+Loading';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent"></div>
+                        <div class="app-card-glow"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full card-content">
+                             <div class="flex items-center mb-2">
+                                <div class="p-2 bg-fuchsia-500/10 rounded-md mr-3 border border-fuchsia-500/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-fuchsia-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l-2.293-2.293a1 1 0 010-1.414l7-7a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0L10 21z" /></svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Instrument Loading</h3>
+                            </div>
+                            <p class="text-slate-300 mt-2 description">Precisely loads and unloads microplates and racks for analysis instruments.</p>
+                        </div>
+                    </div>
+                    <!-- App 3: Vial Sorting & Capping --><div class="group app-card relative overflow-hidden rounded-xl reveal" style="transition-delay: 0.4s;">
+                        <img src="https://images.unsplash.com/photo-1578500523703-8121fccc3d1a?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Close-up of a robotic arm handling small vials" onerror="this.onerror=null;this.src='https://placehold.co/600x400/03040B/FFFFFF?text=Vial+Handling';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent"></div>
+                        <div class="app-card-glow"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full card-content">
+                            <div class="flex items-center mb-2">
+                                <div class="p-2 bg-amber-500/10 rounded-md mr-3 border border-amber-500/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Vial Sorting & Capping</h3>
+                            </div>
+                            <p class="text-slate-300 mt-2 description">Sorts, caps, and stores sample vials with barcode integration for full traceability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section --><section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="animated-border-box glass-card rounded-2xl p-10 md:p-16 text-center reveal">
+                     <h2 class="text-4xl md:text-5xl font-bold text-white">Revolutionize Your Lab Today.</h2>
+                     <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-300 leading-relaxed">
+                        Ready to see how RoboLab Assistant can increase your throughput, improve accuracy, and free up valuable researcher time? Schedule a personalized demo with our automation experts.
+                    </p>
+                    <div class="mt-10">
+                         <a href="#" class="bg-sky-500 text-white font-bold text-lg px-10 py-5 rounded-lg shadow-lg shadow-sky-500/40 hover:bg-sky-600 transition-all duration-300 transform hover:scale-105">
+                            Request a Personalized Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer --><footer class="bg-gray-900/40 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-lg font-semibold text-white">Robo<span class="text-sky-400">Lab</span> Assistant</p>
+                    <p class="text-sm text-slate-400">&copy; 2025 RoboLab Inc. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M... (Twitter icon path) ..."></path></svg></a>
+                    <a href="#" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M... (LinkedIn icon path) ..."></path></svg></a>
+                    <a href="#" class="text-slate-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M... (GitHub icon path) ..."></path></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Sticky Header
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-gray-900/80', 'backdrop-blur-md', 'shadow-lg');
+                } else {
+                    header.classList.remove('bg-gray-900/80', 'backdrop-blur-md', 'shadow-lg');
+                }
+            });
+
+            // Scroll-triggered animations
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Application card mouse tracking for glow effect
+            const appCards = document.querySelectorAll('.app-card');
+            appCards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                    card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.setProperty('--mouse-x', '50%');
+                    card.style.setProperty('--mouse-y', '50%');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
