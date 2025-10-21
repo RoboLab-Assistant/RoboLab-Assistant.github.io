@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  A compact robotic helper that moves test tubes (cuvettes) safely between a tray and a lab analyser.
+  A vision and motion planning framework for robotic arms that moves test tubes (cuvettes) safely for chemical testing.
 </p>
 
 ---
@@ -59,10 +59,4 @@ RoboLab Assistant is a student-built system that helps automate a common lab tas
 
 ## Acknowledgements
 
-Built by a small team of mechatronics students. Thanks to our mentors and lab staff for space, feedback and safety guidance.
-
----
-
-<p align="center">
-  <sub>Wordmark uses Inter Medium. “Lab” is coloured <code>#0fa4c0</code> to match the project theme.</sub>
-</p>
+Built by a small team of mechatronics students. Thanks to our supervisors and lab staff for space, feedback and safety guidance.
