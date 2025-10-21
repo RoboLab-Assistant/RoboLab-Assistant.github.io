@@ -1,16 +1,36 @@
-# capstone-project
-1.Create a New Workspace Folder and a src Directory
+<p align="center">
+  <img src="docs/logos/RoboLab%20Assistant%20-%20Square%20(Dark).svg" alt="RoboLab Assistant Logo" width="220" />
+</p>
 
-2.Copy the packages(without models) into src
+<h1 align="center" style="font-family: 'Inter', sans-serif; font-weight: 500;">Robo<span style="color: #0fa4c0;">Lab</span> Assistant</h1>
 
-3.Build the New Workspace
+<p align="center" style="font-family: 'Inter', sans-serif;">
+  Your hub for collaborative robotics exploration, immersive simulations, and hands-on learning.
+</p>
 
-4.Source the workspace
+---
 
-5.Edit the package file
+## Why RoboLab Assistant?
+- 🤖 Brings together cutting-edge robotic arms, grippers, and sensors into a cohesive playground for experimentation.
+- Designed as a welcoming home page for curious learners, seasoned engineers, and everyone in between.
+- Showcases interactive demos, visual assets, and stories from the lab to spark your next idea.
 
-6.Launch the simulation (moveit+gazebo)
+## Highlights at a Glance
+- 🌐 Immersive simulation scenes crafted for ROS 2 and Gazebo enthusiasts.
+- 📦 Modular packages that reveal how each component fits into the broader robotics ecosystem.
+- ✨ Carefully curated visuals and documentation to guide you through the RoboLab journey.
 
-ros2 launch ur_yt_sim bringup.launch.py(ur3e+rq85+environment)
+## Explore the Experience
+1. Start with the featured scenarios to see the assistant in action.
+2. Browse the image galleries and diagrams to understand the hardware lineup.
+3. Dive into the showcased projects for inspiration on building your own automations.
 
-models is for the 'gazebo.' file
+## Join the Conversation
+- 💬 Share your insights, questions, or success stories via issues and discussions.
+- Follow along as we expand the RoboLab Assistant with fresh modules, tutorials, and showcases.
+
+---
+
+<p align="center" style="font-family: 'Inter', sans-serif; font-size: 0.95rem;">
+  Together, let's build intuitive, accessible robotics experiences for everyone.
+</p>
