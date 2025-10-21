@@ -1,0 +1,8 @@
+# AprilTag 3 Python bindings
+git+https://github.com/duckietown/lib-dt-apriltags
+
+# OpenCV for image processing
+opencv-python>=4.5.0
+
+# Additional dependencies
+numpy>=1.19.0
