@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="60" viewBox="0 0 520 60">
+  <title>RoboLab Assistant (dark)</title>
+  <rect width="100%" height="100%" fill="none"/>
+  <g font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-weight="500" font-size="40">
+    <text x="0" y="45" fill="#ffffff">Robo</text>
+    <text x="110" y="45" fill="#0fa4c0">Lab</text>
+    <text x="190" y="45" fill="#ffffff"> Assistant</text>
+  </g>
+</svg>
