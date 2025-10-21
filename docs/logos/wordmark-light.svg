@@ -1,11 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="60" viewBox="0 0 520 60">
-  <title>RoboLab Assistant (light)</title>
-  <rect width="100%" height="100%" fill="none"/>
-  <!-- Inter cannot be guaranteed on GitHub; this will fall back to system UI. 
-       For perfect fidelity, export text as outlines from your designer. -->
-  <g font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-weight="500" font-size="40">
-    <text x="0" y="45" fill="#0b1220">Robo</text>
-    <text x="110" y="45" fill="#0fa4c0">Lab</text>
-    <text x="190" y="45" fill="#0b1220"> Assistant</text>
-  </g>
+<svg width="250" height="40" viewBox="0 0 250 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- 
+      Dark version of the RoboLab Assistant wordmark.
+      - "Robo" and "Assistant" are a dark gray, designed for light backgrounds.
+      - "Lab" uses the brand's sky blue color.
+      - Font is set to 'Inter' to match the website, with sans-serif fallbacks.
+    -->
+    <style>
+        .wordmark {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            fill: #111827; /* Tailwind's gray-900 for dark version */
+        }
+        .highlight {
+            fill: #38bdf8; /* Tailwind's sky-400 */
+        }
+    </style>
+    <text x="0" y="28" class="wordmark">
+        Robo<tspan class="highlight">Lab</tspan> Assistant
+    </text>
 </svg>
