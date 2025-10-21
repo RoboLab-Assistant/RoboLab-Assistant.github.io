@@ -3,15 +3,9 @@
 </p>
 
 <p align="center">
-  <!-- Inline SVG wordmark so we can colour just “Lab” and request Inter Medium -->
-  <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RoboLab Assistant" width="520" height="60">
-    <style>
-      text { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-weight: 500; }
-    </style>
-    <text x="0" y="45" font-size="40" fill="#ffffff">Robo</text>
-    <text x="110" y="45" font-size="40" fill="#0fa4c0">Lab</text>
-    <text x="190" y="45" font-size="40" fill="#ffffff"> Assistant</text>
-  </svg>
+  <!-- Theme-aware wordmark on GitHub -->
+  <img src="docs/logos/wordmark-dark.svg#gh-dark-mode-only" width="520" alt="RoboLab Assistant">
+  <img src="docs/logos/wordmark-light.svg#gh-light-mode-only" width="520" alt="RoboLab Assistant">
 </p>
 
 <p align="center">
