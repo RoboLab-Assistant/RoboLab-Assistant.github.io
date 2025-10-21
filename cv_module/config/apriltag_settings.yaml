@@ -1,0 +1,17 @@
+apriltag:
+  ros__parameters:
+    image_transport: raw
+    approximate_sync: true
+    queue_size: 20
+    family: 16h5
+    size: 0.014
+    profile: true
+    max_hamming: 0
+    detector:
+      threads: 4
+      decimate: 1.5
+      blur: 0.2
+      refine: true
+      sharpening: 0.1
+      debug: false
+    pose_estimation_method: pnp
