@@ -116,7 +116,7 @@
             color: #0ea5e9; /* sky-500 */
         }
 
-        /* Video Modal Styles */
+        /* --- CORRECTED VIDEO MODAL STYLES --- */
         .video-modal-overlay {
             transition: opacity 0.3s ease;
         }
@@ -126,6 +126,9 @@
         .video-modal-overlay.hidden .video-modal-content {
             transform: scale(0.9);
             opacity: 0;
+        }
+        .video-container {
+            aspect-ratio: 16 / 9;
         }
 
     </style>
@@ -277,7 +280,7 @@
           <!-- Step 3 -->
           <div class="timeline-item-new">
             <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center ring-8 ring-emerald-500/20">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <h3 class="text-xl font-bold text-white">3. Do the action</h3>
             <p class="text-slate-400 mt-1">The robot moves, places the test tube and closes the lid. If misaligned or a spill is seen, it stops.</p>
@@ -401,10 +404,10 @@
         </div>
     </footer>
 
-    <!-- Video Modal --><div id="video-modal" class="video-modal-overlay hidden fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+    <!-- Video Modal --><div id="video-modal" class="video-modal-overlay hidden fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-60">
         <div class="video-modal-content w-full max-w-4xl bg-black rounded-lg shadow-2xl relative">
             <button id="close-modal-btn" class="absolute -top-4 -right-4 w-10 h-10 bg-white text-black rounded-full flex items-center justify-center text-2xl z-10">&times;</button>
-            <div class="aspect-w-16 aspect-h-9">
+            <div class="video-container">
                  <video id="demo-video" controls class="w-full h-full rounded-lg" preload="none">
                     <source src="/videos/Motion Planning Demo.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -459,17 +462,17 @@
             const watchDemoBtn = document.getElementById('watch-demo-btn');
             const videoModal = document.getElementById('video-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
-            const videoIframe = document.getElementById('video-iframe');
-            const videoSrc = videoIframe.src;
+            const demoVideo = document.getElementById('demo-video');
 
             function openModal() {
                 videoModal.classList.remove('hidden');
-                videoIframe.src = videoSrc + "?autoplay=1"; // Add autoplay
+                demoVideo.play();
             }
 
             function closeModal() {
                 videoModal.classList.add('hidden');
-                videoIframe.src = ""; // Stop the video
+                demoVideo.pause();
+                demoVideo.currentTime = 0; // Reset video to the start
             }
 
             watchDemoBtn.addEventListener('click', openModal);
