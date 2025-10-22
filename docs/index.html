@@ -405,7 +405,10 @@
         <div class="video-modal-content w-full max-w-4xl bg-black rounded-lg shadow-2xl relative">
             <button id="close-modal-btn" class="absolute -top-4 -right-4 w-10 h-10 bg-white text-black rounded-full flex items-center justify-center text-2xl z-10">&times;</button>
             <div class="aspect-w-16 aspect-h-9">
-                <iframe id="video-iframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full rounded-lg"></iframe>
+                 <video id="demo-video" controls class="w-full h-full rounded-lg" preload="none">
+                    <source src="/videos/Motion Planning Demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </div>
