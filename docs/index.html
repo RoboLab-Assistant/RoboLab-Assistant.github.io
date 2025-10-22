@@ -252,9 +252,9 @@
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <div class="reveal">
         <p class="text-sky-400 font-semibold mb-2">HOW IT WORKS</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">A Seamless Workflow from Vision to Action</h2>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">From Tags to Tested Sample</h2>
         <p class="text-slate-400 text-lg leading-relaxed mb-8">
-          Vision, planning and control work together. Jobs are trialled in simulation first, then run on the robot.
+          A wrist camera and AprilTag markers tell the robot where everything is. Paths are planned in ROS&nbsp;2 with MoveIt&nbsp;2, rehearsed in simulation, then run on the UR3e with simple safety checks.
         </p>
 
         <!-- Timeline -->
@@ -264,8 +264,8 @@
             <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center ring-8 ring-sky-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
-            <h3 class="text-xl font-bold text-white">1. Look and confirm</h3>
-            <p class="text-slate-400 mt-1">The camera finds the markers and checks the scene matches the plan.</p>
+            <h3 class="text-xl font-bold text-white">1. See and check</h3>
+            <p class="text-slate-400 mt-1">The camera finds AprilTags on the tray, cuvette and analyser, then checks the scene matches the expected layout before moving in.</p>
           </div>
 
           <!-- Step 2 -->
@@ -273,29 +273,29 @@
             <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-fuchsia-500 flex items-center justify-center ring-8 ring-fuchsia-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3"/></svg>
             </div>
-            <h3 class="text-xl font-bold text-white">2. Plan the path</h3>
-            <p class="text-slate-400 mt-1">The software chooses a safe, efficient move to the next target.</p>
+            <h3 class="text-xl font-bold text-white">2. Plan the move</h3>
+            <p class="text-slate-400 mt-1">MoveIt&nbsp;2 chooses a collision-free path for the next step using a measured model of the bench and instrument, then the path is trialled in simulation.</p>
           </div>
 
           <!-- Step 3 -->
           <div class="timeline-item-new">
             <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center ring-8 ring-emerald-500/20">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <h3 class="text-xl font-bold text-white">3. Do the action</h3>
-            <p class="text-slate-400 mt-1">The robot moves, places the test tube and closes the lid. If misaligned or a spill is seen, it stops.</p>
+            <h3 class="text-xl font-bold text-white">3. Place and confirm</h3>
+            <p class="text-slate-400 mt-1">The UR3e inserts the cuvette, closes the sliding lid and can press start. Vision checks the final pose. If misaligned or a spill is seen, it stops and alerts the operator.</p>
           </div>
         </div>
       </div>
 
-      <!-- <div class="reveal">
+      <div class="reveal">
         <div class="glass-card rounded-2xl p-4">
           <img src="https://images.unsplash.com/photo-1694500980502-7c8c39386a59?q=80&w=1974&auto=format&fit=crop"
-               alt="Robot arm tending a lab analyser."
+               alt="UR3e with a wrist camera aligning a cuvette for a DLS analyser in a simulated lab layout."
                class="rounded-xl"
                onerror="this.onerror=null;this.src='https://placehold.co/800x600/111827/FFFFFF?text=Image+Not+Found';">
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </section>
