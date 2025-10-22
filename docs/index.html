@@ -249,16 +249,17 @@
 <!-- Technology Section -->
 <section id="technology" class="py-20 md:py-32 bg-gray-900/40">
   <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div class="reveal">
-        <p class="text-sky-400 font-semibold mb-2">HOW IT WORKS</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">From Tags to Tested Sample</h2>
-        <p class="text-slate-400 text-lg leading-relaxed mb-8">
+    <div class="text-center mb-16">
+        <p class="text-sky-400 font-semibold mb-2 reveal">HOW IT WORKS</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 reveal">From Tags to Tested Sample</h2>
+        <p class="text-slate-400 text-lg leading-relaxed max-w-3xl mx-auto reveal">
           A wrist camera and AprilTag markers tell the robot where everything is. Paths are planned in ROS&nbsp;2 with MoveIt&nbsp;2, rehearsed in simulation, then run on the UR3e with simple safety checks.
         </p>
+    </div>
 
+    <div class="max-w-3xl mx-auto">
         <!-- Timeline -->
-        <div class="space-y-12">
+        <div class="space-y-12 reveal">
           <!-- Step 1 -->
           <div class="timeline-item-new">
             <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center ring-8 ring-sky-500/20">
@@ -280,22 +281,12 @@
           <!-- Step 3 -->
           <div class="timeline-item-new">
             <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center ring-8 ring-emerald-500/20">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <h3 class="text-xl font-bold text-white">3. Place and confirm</h3>
             <p class="text-slate-400 mt-1">The UR3e inserts the cuvette, closes the sliding lid and can press start. Vision checks the final pose. If misaligned or a spill is seen, it stops and alerts the operator.</p>
           </div>
         </div>
-      </div>
-
-      <div class="reveal">
-        <div class="glass-card rounded-2xl p-4">
-          <img src="https://images.unsplash.com/photo-1694500980502-7c8c39386a59?q=80&w=1974&auto=format&fit=crop"
-               alt="UR3e with a wrist camera aligning a cuvette for a DLS analyser in a simulated lab layout."
-               class="rounded-xl"
-               onerror="this.onerror=null;this.src='https://placehold.co/800x600/111827/FFFFFF?text=Image+Not+Found';">
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -486,4 +477,5 @@
     </script>
 </body>
 </html>
+
 
