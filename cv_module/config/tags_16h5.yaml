@@ -2,7 +2,7 @@ apriltag:
   ros__parameters:
     image_transport: raw
     family: 16h5
-    size: 0.014
+    size: 0.0105
     tag:
       ids:
       - 0
@@ -27,16 +27,16 @@ apriltag:
       - tag16h5:8
       - tag16h5:10
       sizes:
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
-      - 0.014
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
+      - 0.0105
     bundle:
       name: dls_bundle_centroid
       ids:
@@ -49,7 +49,7 @@ apriltag:
       - 6
       - 7
       # Bundle center offsets FROM each tag TO the center
-      # 3x3 grid of 14mm tags with 4mm spacing (18mm between centers)
+      # 3x3 grid of 10.5mm tags with 7.5mm spacing (18mm between centers)
       # Bundle center is at the center of the grid
       # All tags have same orientation, different positions
       poses:

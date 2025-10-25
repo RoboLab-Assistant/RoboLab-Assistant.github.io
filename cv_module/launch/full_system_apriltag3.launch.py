@@ -14,7 +14,7 @@ def generate_launch_description():
     enable_frustum = DeclareLaunchArgument('enable_frustum', default_value='true')
     use_compressed = DeclareLaunchArgument('use_compressed_image_transport', default_value='false')
     bundle_label = DeclareLaunchArgument('bundle_label', default_value='DLS Receptacle')
-    lid_tag_size_mm = DeclareLaunchArgument('lid_tag_size_mm', default_value='14.0')
+    lid_tag_size_mm = DeclareLaunchArgument('lid_tag_size_mm', default_value='10.5')
     override_intrinsics = DeclareLaunchArgument('override_intrinsics_from_yaml', default_value='false')
     intrinsics_yaml = DeclareLaunchArgument('intrinsics_yaml', default_value=PathJoinSubstitution([FindPackageShare('cv_module'),'config','camera_intrinsics.yaml']))
     tags_yaml = DeclareLaunchArgument('tags_yaml', default_value=PathJoinSubstitution([FindPackageShare('cv_module'),'config','tags_16h5.yaml']))

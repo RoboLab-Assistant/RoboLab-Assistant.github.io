@@ -30,8 +30,8 @@ def generate_launch_description():
     
     tag_size = DeclareLaunchArgument(
         'tag_size',
-        default_value='0.014',
-        description='AprilTag size in meters (0.014 = 14mm)'
+        default_value='0.0105',
+        description='AprilTag size in meters (0.0105 = 10.5mm)'
     )
 
     # Launch RealSense camera

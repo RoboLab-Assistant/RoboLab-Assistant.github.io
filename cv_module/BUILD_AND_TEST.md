@@ -29,6 +29,7 @@ ros2 launch cv_module calibrate_camera.launch.py
    - Uses your AprilTag bundle geometry from `tags_16h5.yaml`
    - Interactive OpenCV window with visual feedback
    - Exports calibration in ROS `camera_info` format
+   - Default tag size: 10.5mm (black edge to black edge)
 
 2. **`launch/calibrate_camera.launch.py`**
    - Launch file to start RealSense + calibrator
@@ -232,7 +233,7 @@ source install/setup.bash
 ### Calibration Quality Issues
 
 **High RMS error (> 1.5 pixels)**
-- ✓ Verify tag size is **exactly 14.0mm** (measure with calipers)
+- ✓ Verify tag size is **exactly 10.5mm** (measure with calipers - black edge to black edge)
 - ✓ Check bundle spacing is **exactly 18.0mm** center-to-center
 - ✓ Ensure bundle is **flat and rigid** (no bending)
 - ✓ Use **even lighting** (no shadows or glare)

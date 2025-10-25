@@ -87,7 +87,7 @@ ros2 launch cv_module full_system_apriltag3.launch.py \
 ## Key Features
 
 ### Accuracy
-- ✓ Uses your exact bundle geometry (18mm spacing, 14mm tags)
+- ✓ Uses your exact bundle geometry (18mm spacing, 10.5mm tags)
 - ✓ Sub-pixel corner detection with AprilTag 3
 - ✓ Multi-image optimization (25+ images)
 - ✓ Reprojection error typically < 0.5 pixels
@@ -138,8 +138,8 @@ Tag Layout (IDs in 3×3 grid):
   6   5   4
 
 Spacing:
-  Tag size: 14mm
-  Edge gap: 4mm
+  Tag size: 10.5mm
+  Edge gap: 7.5mm
   Center-to-center: 18mm
 ```
 
@@ -264,7 +264,7 @@ ros2 launch cv_module calibrate_camera.launch.py \
 6. **Quality**: Only capture when ≥4 tags clearly visible
 
 ### Bundle Maintenance
-1. **Measure regularly**: Verify 14mm tag size with calipers
+1. **Measure regularly**: Verify 10.5mm tag size with calipers (black edge to black edge)
 2. **Check flatness**: No bending or warping
 3. **Clean surface**: Remove dust/smudges
 4. **Protect edges**: Keep tags crisp and sharp
@@ -284,7 +284,7 @@ ros2 launch cv_module calibrate_camera.launch.py \
 | No window appears | Check X11 display, install X server |
 | Tags not detected | Improve lighting, move closer |
 | "Not enough points" | Show ≥4 tags, move bundle closer |
-| High RMS error | Check tag size (14mm), spacing (18mm), flatness |
+| High RMS error | Check tag size (10.5mm), spacing (18mm), flatness |
 | Build error | Install dt-apriltags: `pip3 install dt-apriltags` |
 | Import error | Source workspace: `source install/setup.bash` |
 

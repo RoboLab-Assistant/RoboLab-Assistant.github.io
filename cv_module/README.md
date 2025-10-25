@@ -28,13 +28,13 @@ source install/setup.bash
 ## Launch (full stack with AprilTag 3)
 
 ```bash
-ros2 launch cv_module full_system_apriltag3.launch.py   enable_rviz:=true enable_rqt:=true enable_frustum:=true   use_compressed_image_transport:=false   bundle_label:="DLS Receptacle"   lid_tag_size_mm:=14.0   override_intrinsics_from_yaml:=false   intrinsics_yaml:=share/cv_module/config/camera_intrinsics.yaml   tags_yaml:=share/cv_module/config/tags_16h5.yaml
+ros2 launch cv_module full_system_apriltag3.launch.py   enable_rviz:=true enable_rqt:=true enable_frustum:=true   use_compressed_image_transport:=false   bundle_label:="DLS Receptacle"   lid_tag_size_mm:=10.5   override_intrinsics_from_yaml:=false   intrinsics_yaml:=share/cv_module/config/camera_intrinsics.yaml   tags_yaml:=share/cv_module/config/tags_16h5.yaml
 ```
 
 ## Launch (full stack with original apriltag_ros)
 
 ```bash
-ros2 launch cv_module full_system.launch.py   enable_rviz:=true enable_rqt:=true enable_frustum:=true   use_compressed_image_transport:=false   bundle_label:="DLS Receptacle"   lid_tag_size_mm:=14.0   override_intrinsics_from_yaml:=false   intrinsics_yaml:=share/cv_module/config/camera_intrinsics.yaml   tags_yaml:=share/cv_module/config/tags_16h5.yaml   apriltag_settings_yaml:=share/cv_module/config/apriltag_settings.yaml
+ros2 launch cv_module full_system.launch.py   enable_rviz:=true enable_rqt:=true enable_frustum:=true   use_compressed_image_transport:=false   bundle_label:="DLS Receptacle"   lid_tag_size_mm:=10.5   override_intrinsics_from_yaml:=false   intrinsics_yaml:=share/cv_module/config/camera_intrinsics.yaml   tags_yaml:=share/cv_module/config/tags_16h5.yaml   apriltag_settings_yaml:=share/cv_module/config/apriltag_settings.yaml
 ```
 
 ## Launch (detector only)
@@ -81,7 +81,7 @@ See **`CALIBRATION_QUICKSTART.md`** for a 5-minute guide or **`CALIBRATION_GUIDE
 
 ## Tag layout (16h5)
 
-- Cuvette: ID=10, **14 mm**.- DLS *bundle*: IDs **0–7** in a 3×3 grid with the centre missing; **14 mm** per tag, **4 mm** edge spacing. Bundle origin at grid centre.- Lid: ID=8, configurable (`lid_tag_size_mm`).
+- Cuvette: ID=10, **10.5 mm**.- DLS *bundle*: IDs **0–7** in a 3×3 grid with the centre missing; **10.5 mm** per tag, **7.5 mm** edge spacing. Bundle origin at grid centre.- Lid: ID=8, configurable (`lid_tag_size_mm`).
 
 See `config/tags_16h5.yaml` for exact sizes and transforms.
 

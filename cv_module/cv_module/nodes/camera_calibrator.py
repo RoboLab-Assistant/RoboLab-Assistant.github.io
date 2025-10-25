@@ -20,7 +20,7 @@ class CameraCalibrator(Node):
         self.declare_parameter('bundle_yaml', '')
         self.declare_parameter('output_yaml', 'camera_intrinsics_calibrated.yaml')
         self.declare_parameter('num_images', 25)
-        self.declare_parameter('tag_size', 0.014)  # 14mm tags
+        self.declare_parameter('tag_size', 0.0105)  # 10.5mm tags
         self.declare_parameter('show_preview', True)
         
         self.image_topic = self.get_parameter('image_topic').get_parameter_value().string_value

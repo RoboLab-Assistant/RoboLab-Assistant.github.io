@@ -26,15 +26,15 @@ Calibrating with your **actual AprilTag bundle** provides:
 
 2. **Print your AprilTag bundle** (if not already done):
    - Use the `tag16h5` family
-   - Print tags with **exactly 14mm** edge size (black square)
+   - Print tags with **exactly 10.5mm** edge size (black square, not including white border)
    - Arrange in the 3×3 grid as defined in `config/tags_16h5.yaml`
-   - Ensure accurate spacing (4mm between tag edges = 18mm center-to-center)
+   - Ensure accurate spacing (7.5mm between tag edges = 18mm center-to-center)
    - Mount on a **rigid, flat surface** (cardboard, acrylic, etc.)
 
 3. **Verify bundle configuration**:
    - Check that `config/tags_16h5.yaml` matches your physical bundle
    - Confirm tag IDs: 0-7 in the correct positions
-   - Confirm tag size: 14mm
+   - Confirm tag size: 10.5mm
 
 ## Calibration Process
 
@@ -50,7 +50,7 @@ ros2 launch cv_module calibrate_camera.launch.py \
   tags_yaml:=/path/to/your/tags_16h5.yaml \
   output_yaml:=my_camera_calibration.yaml \
   num_images:=30 \
-  tag_size:=0.014
+  tag_size:=0.0105
 ```
 
 You should see:
@@ -200,7 +200,7 @@ ros2 launch cv_module full_system_apriltag3.launch.py \
 - Verify tag sizes in YAML match physical tags
 
 ### High reprojection error (> 1.5 pixels)
-- **Check tag printing accuracy** - use calipers to measure 14.0mm exactly
+- **Check tag printing accuracy** - use calipers to measure 10.5mm exactly (black edge to black edge)
 - **Verify bundle geometry** - measure center-to-center distances (should be 18mm)
 - **Improve lighting** - reduce shadows and glare
 - **Use more images** - aim for 30+ with better variety
@@ -237,7 +237,7 @@ For close-range work (10-20cm):
 If you have different tag sizes:
 ```bash
 ros2 launch cv_module calibrate_camera.launch.py \
-  tag_size:=0.020  # 20mm tags
+  tag_size:=0.020  # 20mm tags (black edge to black edge)
 ```
 
 ### Batch Processing

@@ -7,7 +7,7 @@ apriltag3_detector:
     
     # Tag parameters
     family: 'tag16h5'
-    size: 0.014  # Tag size in meters (14mm)
+    size: 0.0105  # Tag size in meters (10.5mm)
     
     # General settings
     publish_tf: true

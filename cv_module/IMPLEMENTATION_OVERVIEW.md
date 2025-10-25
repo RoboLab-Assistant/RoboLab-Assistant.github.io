@@ -50,7 +50,7 @@ RealSense Camera → Image Stream → Camera Calibrator Node
   - `tags_yaml`: Path to bundle configuration
   - `output_yaml`: Output filename
   - `num_images`: Target number of images to collect (default: 25)
-  - `tag_size`: Tag size in meters (default: 0.014)
+  - `tag_size`: Tag size in meters (default: 0.0105)
 
 #### 3. Documentation
 **`CALIBRATION_QUICKSTART.md`**
@@ -108,7 +108,7 @@ RealSense Camera → Image Stream → Camera Calibrator Node
 - ✅ Reads bundle configuration from tags_16h5.yaml
 - ✅ Computes 3D positions of all 32 tag corners
 - ✅ Accounts for tag-to-bundle transforms
-- ✅ Uses exact tag size (14mm) and spacing (18mm)
+- ✅ Uses exact tag size (10.5mm) and spacing (18mm)
 
 #### Robust Calibration
 - ✅ Requires minimum 4 tags per image (16 points)
@@ -166,7 +166,7 @@ ros2 launch cv_module full_system_apriltag3.launch.py
 #### Input
 - **Image stream**: 1920×1080 RGB from RealSense D435
 - **Bundle config**: tags_16h5.yaml (8 tags in 3×3 grid)
-- **Tag size**: 14mm (configurable)
+- **Tag size**: 10.5mm (configurable)
 - **Tag spacing**: 18mm center-to-center
 
 #### Processing
@@ -358,7 +358,7 @@ You now have a **complete, production-ready camera calibration system** that:
 
 ✅ **Answers your question**: Yes, quick and accurate calibration is possible using your AprilTag bundle
 
-✅ **Uses your bundle geometry**: Leverages known tag sizes (14mm) and spacing (18mm)
+✅ **Uses your bundle geometry**: Leverages known tag sizes (10.5mm) and spacing (18mm)
 
 ✅ **Provides better accuracy**: 30-50% improvement over factory calibration
 

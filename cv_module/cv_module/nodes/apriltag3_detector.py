@@ -25,7 +25,7 @@ class AprilTag3Detector(Node):
         self.declare_parameter('camera_info_topic', '/camera/color/camera_info')
         self.declare_parameter('detections_topic', '/camera/tags')
         self.declare_parameter('family', 'tag16h5')
-        self.declare_parameter('size', 0.014)  # 14mm
+        self.declare_parameter('size', 0.0105)  # 10.5mm
         self.declare_parameter('publish_tf', True)
         self.declare_parameter('camera_frame', 'camera_color_optical_frame')
         self.declare_parameter('max_hamming', 0)  # Only accept perfect detections

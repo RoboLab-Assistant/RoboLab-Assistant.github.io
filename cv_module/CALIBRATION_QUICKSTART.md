@@ -60,7 +60,7 @@ source install/setup.bash
 - Check tags are tag16h5 family
 
 **High error?**
-- Verify tags are **exactly 14mm** (measure with calipers)
+- Verify tags are **exactly 10.5mm** (measure with calipers - black edge to black edge)
 - Check bundle spacing is accurate (18mm center-to-center)
 - Keep bundle flat - any bending hurts accuracy
 - Collect more images with better variety

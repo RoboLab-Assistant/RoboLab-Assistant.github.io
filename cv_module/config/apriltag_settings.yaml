@@ -4,7 +4,7 @@ apriltag:
     approximate_sync: true
     queue_size: 20
     family: 16h5
-    size: 0.014
+    size: 0.0105
     profile: true
     max_hamming: 0
     detector:
