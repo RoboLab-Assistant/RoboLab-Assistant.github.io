@@ -20,6 +20,7 @@ setup(
             'config/tags_16h5.yaml',
             'config/apriltag_settings.yaml',
             'config/apriltag3_settings.yaml',
+            'config/apriltag3_bundle.yaml',
             'config/camera_intrinsics.yaml',
         ]),
         ('share/' + package_name + '/rviz', ['rviz/cv_module.rviz']),

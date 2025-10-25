@@ -19,6 +19,7 @@ def generate_launch_description():
     intrinsics_yaml = DeclareLaunchArgument('intrinsics_yaml', default_value=PathJoinSubstitution([FindPackageShare('cv_module'),'config','camera_intrinsics.yaml']))
     tags_yaml = DeclareLaunchArgument('tags_yaml', default_value=PathJoinSubstitution([FindPackageShare('cv_module'),'config','tags_16h5.yaml']))
     apriltag3_settings_yaml = DeclareLaunchArgument('apriltag3_settings_yaml', default_value=PathJoinSubstitution([FindPackageShare('cv_module'),'config','apriltag3_settings.yaml']))
+    apriltag3_bundle_yaml = DeclareLaunchArgument('apriltag3_bundle_yaml', default_value=PathJoinSubstitution([FindPackageShare('cv_module'),'config','apriltag3_bundle.yaml']))
 
     realsense = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -70,7 +71,13 @@ def generate_launch_description():
         executable='apriltag3_detector',
         name='apriltag3_detector',
         output='screen',
-        parameters=[LaunchConfiguration('apriltag3_settings_yaml')]
+        parameters=[
+            LaunchConfiguration('apriltag3_settings_yaml'),
+            {
+                'bundle_config_yaml': LaunchConfiguration('apriltag3_bundle_yaml'),
+                'enable_bundle_detection': True,
+            }
+        ]
     )
 
     # Upstream apriltag_draw overlay (apriltag_detector) with correct topic structure
@@ -153,6 +160,6 @@ def generate_launch_description():
     return LaunchDescription([
         enable_rviz, enable_rqt, enable_frustum, use_compressed,
         bundle_label, lid_tag_size_mm, override_intrinsics,
-        intrinsics_yaml, tags_yaml, apriltag3_settings_yaml,
+        intrinsics_yaml, tags_yaml, apriltag3_settings_yaml, apriltag3_bundle_yaml,
         realsense, static_tf, cam_override, apriltag3, draw, bundle, rviz, frustum, rqt
     ])

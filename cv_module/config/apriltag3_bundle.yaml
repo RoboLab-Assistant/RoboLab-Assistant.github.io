@@ -1,0 +1,68 @@
+apriltag3_bundle:
+  ros__parameters:
+    bundle_name: "dls_bundle_centroid"
+    tag_family: "tag16h5"
+    tag_size: 0.0105  # 10.5mm tags (black edge to black edge)
+    
+    # Bundle geometry: 3x3 grid with center missing
+    # Tag layout:
+    #   0   1   2
+    #   7       3
+    #   6   5   4
+    # Bundle center is at origin (0,0,0)
+    # Center-to-center spacing: 18mm
+    
+    # Define exact 3D positions of each tag's corners in bundle frame (meters)
+    # Each tag has 4 corners: [top-left, top-right, bottom-right, bottom-left]
+    # Bundle coordinate system: +X right, +Y down, +Z forward
+    tag_corners:
+      0:  # Top-left tag (18mm right, 18mm up from bundle center)
+        - [0.01275, -0.02325, 0.0]   # Top-left corner of tag 0
+        - [0.02325, -0.02325, 0.0]  # Top-right corner
+        - [0.02325, -0.01275, 0.0]  # Bottom-right corner
+        - [0.01275, -0.01275, 0.0]  # Bottom-left corner
+      1:  # Top-center tag (0mm horizontal, 18mm up from bundle center)
+        - [-0.00525, -0.02325, 0.0]  # Top-left corner of tag 1
+        - [0.00525, -0.02325, 0.0]   # Top-right corner
+        - [0.00525, -0.01275, 0.0]   # Bottom-right corner
+        - [-0.00525, -0.01275, 0.0]  # Bottom-left corner
+      2:  # Top-right tag (18mm left, 18mm up from bundle center)
+        - [-0.02325, -0.02325, 0.0] # Top-left corner of tag 2
+        - [-0.01275, -0.02325, 0.0] # Top-right corner
+        - [-0.01275, -0.01275, 0.0] # Bottom-right corner
+        - [-0.02325, -0.01275, 0.0] # Bottom-left corner
+      3:  # Middle-right tag (18mm left, 0mm vertical from bundle center)
+        - [-0.02325, -0.00525, 0.0] # Top-left corner of tag 3
+        - [-0.01275, -0.00525, 0.0] # Top-right corner
+        - [-0.01275, 0.00525, 0.0]  # Bottom-right corner
+        - [-0.02325, 0.00525, 0.0]  # Bottom-left corner
+      4:  # Bottom-right tag (18mm left, 18mm down from bundle center)
+        - [-0.02325, 0.01275, 0.0]  # Top-left corner of tag 4
+        - [-0.01275, 0.01275, 0.0]  # Top-right corner
+        - [-0.01275, 0.02325, 0.0]  # Bottom-right corner
+        - [-0.02325, 0.02325, 0.0]  # Bottom-left corner
+      5:  # Bottom-center tag (0mm horizontal, 18mm down from bundle center)
+        - [-0.00525, 0.01275, 0.0]  # Top-left corner of tag 5
+        - [0.00525, 0.01275, 0.0]   # Top-right corner
+        - [0.00525, 0.02325, 0.0]   # Bottom-right corner
+        - [-0.00525, 0.02325, 0.0]  # Bottom-left corner
+      6:  # Bottom-left tag (18mm right, 18mm down from bundle center)
+        - [0.01275, 0.01275, 0.0]   # Top-left corner of tag 6
+        - [0.02325, 0.01275, 0.0]  # Top-right corner
+        - [0.02325, 0.02325, 0.0]  # Bottom-right corner
+        - [0.01275, 0.02325, 0.0]  # Bottom-left corner
+      7:  # Middle-left tag (18mm right, 0mm vertical from bundle center)
+        - [0.01275, -0.00525, 0.0]  # Top-left corner of tag 7
+        - [0.02325, -0.00525, 0.0] # Top-right corner
+        - [0.02325, 0.00525, 0.0]  # Bottom-right corner
+        - [0.01275, 0.00525, 0.0]  # Bottom-left corner
+    
+    # Bundle center position (origin)
+    bundle_center: [0.0, 0.0, 0.0]
+    
+    # Minimum tags required for bundle detection
+    min_tags_for_bundle: 3
+    
+    # Quality thresholds
+    min_decision_margin: 30.0
+    max_reprojection_error: 2.0

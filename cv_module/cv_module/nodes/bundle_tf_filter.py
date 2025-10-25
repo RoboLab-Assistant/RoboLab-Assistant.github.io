@@ -98,7 +98,34 @@ class BundleTFFilter(Node):
         if not visible_tags:
             return
 
-        # Calculate bundle centroid using multiple tags for better accuracy
+        # Check if bundle TF is already published by apriltag3_detector
+        # If so, we just need to republish the marker and pose topics
+        try:
+            bundle_tf = self.tf_buffer.lookup_transform(self.camera_frame, self.bundle_frame, rclpy.time.Time())
+            
+            # Bundle TF already exists (published by apriltag3_detector with bundle detection)
+            # Just publish marker and pose topics
+            self.publish_label_marker_from_tf(bundle_tf)
+            
+            if self.publish_tag_pose_topics:
+                ps = PoseStamped()
+                ps.header.stamp = msg.header.stamp
+                ps.header.frame_id = self.camera_frame
+                ps.pose.position.x = bundle_tf.transform.translation.x
+                ps.pose.position.y = bundle_tf.transform.translation.y
+                ps.pose.position.z = bundle_tf.transform.translation.z
+                ps.pose.orientation = bundle_tf.transform.rotation
+                self.get_or_create_pub('/cv_module/dls_bundle_centroid/pose').publish(ps)
+            
+            self.get_logger().debug("Bundle TF already published by apriltag3_detector")
+            return
+            
+        except Exception:
+            # Bundle TF not available, fall back to legacy weighted averaging method
+            self.get_logger().debug("Bundle TF not available, using legacy weighted averaging")
+            pass
+        
+        # Legacy bundle calculation (fallback when bundle detection is not available)
         if not self.pass_through_only:
             # Initialize tracking variables
             if not hasattr(self, 'bundle_history'):
@@ -276,6 +303,22 @@ class BundleTFFilter(Node):
         self.get_or_create_pub(f"/cv_module/tag_{tag_id}/pose").publish(ps)
 
     def publish_label_marker(self, tf_msg: TransformStamped):
+        m = Marker()
+        m.header.frame_id = tf_msg.header.frame_id
+        m.header.stamp = tf_msg.header.stamp
+        m.ns = "cv_module"
+        m.id = 1
+        m.type = Marker.TEXT_VIEW_FACING
+        m.action = Marker.ADD
+        m.pose.position.x = tf_msg.transform.translation.x
+        m.pose.position.y = tf_msg.transform.translation.y
+        m.pose.position.z = tf_msg.transform.translation.z + 0.02
+        m.text = self.bundle_label
+        m.scale.z = 0.02  # 2 cm text height
+        self.marker_pub.publish(m)
+    
+    def publish_label_marker_from_tf(self, tf_msg: TransformStamped):
+        """Publish marker label from existing TF transform"""
         m = Marker()
         m.header.frame_id = tf_msg.header.frame_id
         m.header.stamp = tf_msg.header.stamp
